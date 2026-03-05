@@ -640,18 +640,15 @@ function App() {
               <h3>📥 {modeConfig.from} Input</h3>
               <div className="editor-actions">
                 {modeConfig.isErdInput && (
-                  <>
-                    <label className="btn btn-sm" style={{ cursor: 'pointer' }} title="Upload .erd or .json file">
-                      📂 Upload
-                      <input
-                        type="file"
-                        accept=".erd,.json,.erdschema"
-                        onChange={handleErdFileUpload}
-                        style={{ display: 'none' }}
-                      />
-                    </label>
-                    <button className="btn btn-sm" onClick={handleErdExport} disabled={erdSchema.entities.length === 0} title="Export ERD">💾 Save</button>
-                  </>
+                  <label className="btn btn-sm" style={{ cursor: 'pointer' }} title="Upload .erd or .json file">
+                    📂 Upload
+                    <input
+                      type="file"
+                      accept=".erd,.json,.erdschema"
+                      onChange={handleErdFileUpload}
+                      style={{ display: 'none' }}
+                    />
+                  </label>
                 )}
                 <button className="btn btn-sm" onClick={clearInput} title="Clear">🗑️ Clear</button>
               </div>

@@ -1,5 +1,4 @@
-// JSON → Java POJO converter
-import { type JavaVersion, jsonTypeToJava, getJpaImportPrefix } from './typeMapper';
+import { type JavaVersion, jsonTypeToJava } from './typeMapper';
 
 export interface JsonToJavaOptions {
     className: string;
@@ -94,7 +93,7 @@ function generateClass(
     if (useRecords) {
         // Generate record
         const params = entries.map(([key, value]) => {
-            const { type, nestedName } = resolveJavaType(key, value, nested, opts, depth);
+            const { type } = resolveJavaType(key, value, nested, opts, depth);
             const fieldName = toCamelCase(key);
             const annotations: string[] = [];
             if (opts.useJackson && key !== fieldName) {

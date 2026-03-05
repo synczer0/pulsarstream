@@ -78,7 +78,6 @@ function generateEntity(
         }
     }
 
-    const hasPK = entity.fields.some(f => f.isPrimaryKey);
     const hasAutoIncrement = entity.fields.some(f => f.isPrimaryKey);
     if (hasAutoIncrement) {
         imports.add(`import ${jpaPrefix}.GeneratedValue;`);

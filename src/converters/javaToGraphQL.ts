@@ -1,5 +1,5 @@
 // Java → GraphQL converter
-import type { GqlSchema, GqlType, GqlField, GqlEnum } from './graphqlParser';
+import type { GqlSchema, GqlField } from './graphqlParser';
 import { generateGraphQL } from './graphqlParser';
 
 export interface JavaToGraphQLOptions {
