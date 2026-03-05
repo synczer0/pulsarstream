@@ -461,19 +461,39 @@ function App() {
       </header>
 
       <main className="main-content">
-        {/* Mode Tabs */}
-        <div className="mode-tabs" role="tablist">
-          {(Object.entries(MODES) as [ConversionMode, ModeConfig][]).map(([key, config]) => (
-            <button
-              key={key}
-              className={`mode-tab ${mode === key ? 'active' : ''}`}
-              onClick={() => handleModeChange(key)}
-              role="tab"
-              aria-selected={mode === key}
+        {/* Mode Selector */}
+        <div className="mode-selector-container">
+          <label htmlFor="conversion-mode" className="mode-label">Conversion Mode</label>
+          <div className="select-wrapper">
+            <select
+              id="conversion-mode"
+              className="mode-select"
+              value={mode}
+              onChange={(e) => handleModeChange(e.target.value as ConversionMode)}
+              aria-label="Select Conversion Mode"
             >
-              {config.label}
-            </button>
-          ))}
+              {[
+                { id: 'json', title: 'JSON' },
+                { id: 'sql', title: 'SQL DDL' },
+                { id: 'erd', title: 'ERD' },
+                { id: 'proto', title: 'Protobuf' },
+                { id: 'graphql', title: 'GraphQL' }
+              ].map(category => (
+                <optgroup
+                  key={category.id}
+                  label={`${category.title} Conversions`}
+                >
+                  {(Object.entries(MODES) as [ConversionMode, ModeConfig][])
+                    .filter(([_, config]) => config.category === category.id)
+                    .map(([key, config]) => (
+                      <option key={key} value={key}>
+                        {config.label}
+                      </option>
+                    ))}
+                </optgroup>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* Options Panel */}
